@@ -144,20 +144,19 @@ class MonthWidget<T> extends StatelessWidget {
 
           List<DateDay> _days = [];
 
+          DateDay firstDay = DateDay(_currentMonth.monthFirstDay.year,
+              _currentMonth.monthFirstDay.month, 1);
+          DateDay endDay = DateDay(_currentMonth.monthEndDay.year,
+              _currentMonth.monthEndDay.month, _currentMonth.maxDays);
+
           List.generate(_headSize, (index) {
-            _days.add(DateDay(_currentMonth.monthFirstDay.year,
-                    _currentMonth.monthFirstDay.month, 1)
-                .subtract(Duration(days: _headSize - index)));
+            _days.add(firstDay.subtract(Duration(days: _headSize - index)));
           });
           List.generate(_currentMonth.maxDays, (index) {
-            _days.add(DateDay(_currentMonth.monthFirstDay.year,
-                    _currentMonth.monthFirstDay.month, 1)
-                .add(Duration(days: index)));
+            _days.add(firstDay.add(Duration(days: index)));
           });
           List.generate(_endSize, (index) {
-            _days.add(DateDay(_currentMonth.monthEndDay.year,
-                    _currentMonth.monthEndDay.month, _currentMonth.maxDays)
-                .add(Duration(days: index + 1)));
+            _days.add(endDay.add(Duration(days: index + 1)));
           });
 
           List<Widget> lay = [];

@@ -6,7 +6,8 @@ import 'date_day.dart';
 /// Create by JsonYe<597232387@qq.com> on 2019/12
 ///
 class DateMonth {
-  DateTime _time;
+  late DateTime _time;
+
   DateTime get time => _time;
 
   late int _year;
@@ -28,7 +29,8 @@ class DateMonth {
   DateMonth(int year, [int month = 1])
       : this.dateTime(DateTime(year, month, 1));
 
-  DateMonth.dateTime(this._time) {
+  DateMonth.dateTime(DateTime time) {
+    this._time = DateTime.utc(time.year, time.month, time.day);
     _year = this.time.year;
     _month = this.time.month;
     _maxDays = DateTime(this.time.year, this.time.month + 1, 1)

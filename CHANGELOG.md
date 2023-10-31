@@ -1,3 +1,6 @@
+## 2.1.0
+- use datetime.utc()
+
 ## 2.0.1
 - 修复 `Operand of null-aware operation '!' has type 'SchedulerBinding' which excludes null`
 
