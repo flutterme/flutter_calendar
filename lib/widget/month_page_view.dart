@@ -118,9 +118,7 @@ class _MonthPageViewState<T> extends State<MonthPageView<T>> {
           widget.onMonthChange!(_monthPageController.monthList[position]));
     }
     SchedulerBinding.instance.addPostFrameCallback((Duration timeStamp) {
-      if (widget.onCreated != null) {
-        widget.onCreated!(_monthPageController);
-      }
+      widget.onCreated?.call(_monthPageController);
     });
     super.initState();
   }
@@ -156,9 +154,7 @@ class _MonthPageViewState<T> extends State<MonthPageView<T>> {
                         _monthPageController
                           ..setMultipleDays(days)
                           ..reLoad();
-                        if (widget.onMultipleSelectListen != null) {
-                          widget.onMultipleSelectListen!(days);
-                        }
+                        widget.onMultipleSelectListen?.call(days);
                       },
                       localeType: widget.localeType ?? CalendarLocaleType.zh,
                       onDaySelected: (day, data, enable) {
@@ -172,16 +168,15 @@ class _MonthPageViewState<T> extends State<MonthPageView<T>> {
                         } else if (day < month.monthFirstDay) {
                           _monthPageController.last();
                         } else {
-                          if (widget.onDaySelected != null)
-                            widget.onDaySelected!(day, data, enable);
+                          widget.onDaySelected?.call(day, data, enable);
                         }
                       },
                       onContinuousSelectListen: (firstDay, secondDay) {
                         _monthPageController
                           ..setContinuousDay(firstDay, secondDay)
                           ..reLoad();
-                        if (widget.onContinuousSelectListen != null)
-                          widget.onContinuousSelectListen!(firstDay, secondDay);
+                        widget.onContinuousSelectListen
+                            ?.call(firstDay, secondDay);
                       },
                     );
                   }).toList(),
@@ -207,13 +202,12 @@ class _MonthPageViewState<T> extends State<MonthPageView<T>> {
               int week = (widget.option.firstWeek + index) % 7;
               return Container(
                 alignment: Alignment.center,
-                child: widget.buildWeekHead != null
-                    ? widget.buildWeekHead!(context, week)
-                    : defaultBuildWeekHead(
-                        context,
-                        week,
-                        localeType: widget.localeType ?? CalendarLocaleType.zh,
-                      ),
+                child: widget.buildWeekHead?.call(context, week) ??
+                    defaultBuildWeekHead(
+                      context,
+                      week,
+                      localeType: widget.localeType ?? CalendarLocaleType.zh,
+                    ),
               );
             }),
           ),
