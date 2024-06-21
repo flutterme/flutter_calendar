@@ -345,5 +345,4 @@ class MonthWidget<T> extends StatelessWidget {
 //          option.firstSelectDay != null &&
 //          (option.secondSelectDay == null && day == option.firstSelectDay) ||
 //      (option.secondSelectDay != null && day >= option.firstSelectDay && day <= option.secondSelectDay);
-
 }
