@@ -286,14 +286,16 @@ class MonthWidget<T> extends StatelessWidget {
     if (option.enableMultiple) {
       if (onMultipleSelectListen != null) {
         bool selected = option.inMultipleDay(day);
-        if (selected)
+        if (selected) {
           monthController
             ..remove(day)
             ..reLoad();
-        else
+        }
+        else {
           monthController
             ..add(day)
             ..reLoad();
+        }
         onMultipleSelectListen!(option.multipleDays);
       }
     } else if (option.enableContinuous) {
