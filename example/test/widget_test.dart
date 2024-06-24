@@ -11,6 +11,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:example/main.dart';
 
 void main() {
+  test("Test DateTime", () {
+    // bug 东2时区，本地时间 2023-10-29 加1天 不是2023-10-30
+    DateTime d1 = DateTime.utc(2023, 10, 29);
+    DateTime d2 = d1.add(Duration(hours: 2));
+    DateTime d3 = d1.add(Duration(hours: 3));
+    print("$d2 $d3");
+    // DateTime d2 = d1.add(Duration(hours: 1));
+    // var diff = dateTime.difference(d1);
+    // var d29 = DateTime(2023,10,29,23,59,59);
+    // print(d29.difference(d1));
+  });
+
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());

@@ -13,7 +13,7 @@ class DateDay extends DateMonth {
       : this.dateTime(DateTime(year, month, day));
 
   DateDay.dateTime(DateTime time) : super.dateTime(time) {
-    this._day = time.day;
+    this._day = this.time.day;
   }
 
   DateDay.now() : this.dateTime(DateTime.now());
