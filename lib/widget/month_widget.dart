@@ -290,8 +290,7 @@ class MonthWidget<T> extends StatelessWidget {
           monthController
             ..remove(day)
             ..reLoad();
-        }
-        else {
+        } else {
           monthController
             ..add(day)
             ..reLoad();
